@@ -1,24 +1,19 @@
--- XQuantum Ultra - GUI Test (só frames básicos)
--- MainFrame + LeftPanel para testar tamanhos
+-- XQuantum Ultra - GUI Test (só frames vazios)
 
-local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
--- ScreenGui principal
+-- ScreenGui
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "XQuantumTest"
 ScreenGui.ResetOnSpawn = false
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- ============================================
--- MAINFRAME (Frame principal)
--- ============================================
+-- MainFrame (frame principal)
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = ScreenGui
 MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 MainFrame.Position = UDim2.new(0.55, 0, 0.5, 0)
-MainFrame.Size = UDim2.new(0, 960, 0, 613) -- Tamanho PC
+MainFrame.Size = UDim2.new(0, 960, 0, 613)
 MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BackgroundTransparency = 0.25
 MainFrame.BorderSizePixel = 0
@@ -27,29 +22,22 @@ local MainCorner = Instance.new("UICorner")
 MainCorner.CornerRadius = UDim.new(0, 12)
 MainCorner.Parent = MainFrame
 
--- Título
-local Title = Instance.new("TextLabel")
-Title.Name = "Title"
-Title.Parent = MainFrame
-Title.Position = UDim2.new(0, 20, 0, 15)
-Title.Size = UDim2.new(0.8, 0, 0, 40)
-Title.BackgroundTransparency = 1
-Title.Text = "XQuantum Ultra: Definitive"
-Title.Font = Enum.Font.GothamBold
-Title.TextSize = 28
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextStrokeTransparency = 0.8
-Title.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-Title.TextXAlignment = Enum.TextXAlignment.Left
+-- LeftPanel (frame do lado)
+local LeftPanel = Instance.new("Frame")
+LeftPanel.Name = "LeftPanel"
+LeftPanel.Parent = ScreenGui
+LeftPanel.AnchorPoint = Vector2.new(1, 0.5)
+LeftPanel.Position = UDim2.new(0.285, 0, 0.5, 0)
+LeftPanel.Size = UDim2.new(0, 250, 0, 613)
+LeftPanel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+LeftPanel.BackgroundTransparency = 0.25
+LeftPanel.BorderSizePixel = 0
 
--- Animação de cor do título
-local tweenInfo = TweenInfo.new(3, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
-local colorTween = TweenService:Create(Title, tweenInfo, {
-    TextColor3 = Color3.fromRGB(0, 0, 0)
-})
-colorTween:Play()
+local LeftCorner = Instance.new("UICorner")
+LeftCorner.CornerRadius = UDim.new(0, 12)
+LeftCorner.Parent = LeftPanel
 
--- Botão de fechar (X)
+-- Botão X (fechar)
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
 CloseButton.Parent = MainFrame
@@ -68,107 +56,23 @@ local CloseCorner = Instance.new("UICorner")
 CloseCorner.CornerRadius = UDim.new(0, 6)
 CloseCorner.Parent = CloseButton
 
--- Botão de minimizar (-)
-local MinimizeButton = Instance.new("TextButton")
-MinimizeButton.Name = "MinimizeButton"
-MinimizeButton.Parent = MainFrame
-MinimizeButton.AnchorPoint = Vector2.new(1, 0)
-MinimizeButton.Position = UDim2.new(1, -50, 0, 15)
-MinimizeButton.Size = UDim2.new(0, 30, 0, 30)
-MinimizeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-MinimizeButton.BackgroundTransparency = 0.25
-MinimizeButton.BorderSizePixel = 0
-MinimizeButton.Text = "-"
-MinimizeButton.Font = Enum.Font.GothamBold
-MinimizeButton.TextSize = 18
-MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
 
-local MinimizeCorner = Instance.new("UICorner")
-MinimizeCorner.CornerRadius = UDim.new(0, 6)
-MinimizeCorner.Parent = MinimizeButton
-
--- Linha de separação
-local MainDivider = Instance.new("Frame")
-MainDivider.Name = "MainDivider"
-MainDivider.Parent = MainFrame
-MainDivider.Position = UDim2.new(0, 20, 0, 60)
-MainDivider.Size = UDim2.new(1, -40, 0, 1)
-MainDivider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-MainDivider.BackgroundTransparency = 0.7
-MainDivider.BorderSizePixel = 0
-
--- ============================================
--- LEFTPANEL (Painel de abas)
--- ============================================
-local LeftPanel = Instance.new("Frame")
-LeftPanel.Name = "LeftPanel"
-LeftPanel.Parent = ScreenGui
-LeftPanel.AnchorPoint = Vector2.new(1, 0.5)
-LeftPanel.Position = UDim2.new(0.285, 0, 0.5, 0)
-LeftPanel.Size = UDim2.new(0, 250, 0, 613) -- Tamanho PC
-LeftPanel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-LeftPanel.BackgroundTransparency = 0.25
-LeftPanel.BorderSizePixel = 0
-
-local LeftCorner = Instance.new("UICorner")
-LeftCorner.CornerRadius = UDim.new(0, 12)
-LeftCorner.Parent = LeftPanel
-
--- Título "Abas"
-local LeftTitle = Instance.new("TextLabel")
-LeftTitle.Name = "LeftTitle"
-LeftTitle.Parent = LeftPanel
-LeftTitle.Position = UDim2.new(0, 0, 0, 15)
-LeftTitle.Size = UDim2.new(1, 0, 0, 40)
-LeftTitle.BackgroundTransparency = 1
-LeftTitle.Text = "Abas"
-LeftTitle.Font = Enum.Font.GothamBold
-LeftTitle.TextSize = 24
-LeftTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-LeftTitle.TextStrokeTransparency = 0.8
-LeftTitle.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-
--- Linha de separação
-local LeftDivider = Instance.new("Frame")
-LeftDivider.Name = "LeftDivider"
-LeftDivider.Parent = LeftPanel
-LeftDivider.Position = UDim2.new(0, 10, 0, 60)
-LeftDivider.Size = UDim2.new(1, -20, 0, 1)
-LeftDivider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-LeftDivider.BackgroundTransparency = 0.7
-LeftDivider.BorderSizePixel = 0
-
--- ============================================
--- SISTEMA DE DRAG
--- ============================================
+-- Sistema de drag
 local TopBar = Instance.new("Frame")
 TopBar.Name = "TopBar"
 TopBar.Parent = MainFrame
-TopBar.Position = UDim2.new(0, 0, 0, 0)
-TopBar.Size = UDim2.new(1, 0, 0, 60)
+TopBar.Size = UDim2.new(1, 0, 1, 0)
 TopBar.BackgroundTransparency = 1
-TopBar.BorderSizePixel = 0
 
-local dragging
-local dragInput
-local dragStart
-local startPos
-local leftStartPos
+local dragging, dragInput, dragStart, startPos, leftStartPos
 
 local function update(input)
     local delta = input.Position - dragStart
-    MainFrame.Position = UDim2.new(
-        startPos.X.Scale,
-        startPos.X.Offset + delta.X,
-        startPos.Y.Scale,
-        startPos.Y.Offset + delta.Y
-    )
-    LeftPanel.Position = UDim2.new(
-        leftStartPos.X.Scale,
-        leftStartPos.X.Offset + delta.X,
-        leftStartPos.Y.Scale,
-        leftStartPos.Y.Offset + delta.Y
-    )
+    MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    LeftPanel.Position = UDim2.new(leftStartPos.X.Scale, leftStartPos.X.Offset + delta.X, leftStartPos.Y.Scale, leftStartPos.Y.Offset + delta.Y)
 end
 
 TopBar.InputBegan:Connect(function(input)
@@ -177,7 +81,6 @@ TopBar.InputBegan:Connect(function(input)
         dragStart = input.Position
         startPos = MainFrame.Position
         leftStartPos = LeftPanel.Position
-
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 dragging = false
@@ -198,29 +101,5 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
--- Funcionalidade dos botões
-CloseButton.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy()
-end)
-
-local function toggleMinimize()
-    MainFrame.Visible = not MainFrame.Visible
-    LeftPanel.Visible = not LeftPanel.Visible
-end
-
-MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
-
--- Tecla B para minimizar
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-    if gameProcessed then return end
-    if input.KeyCode == Enum.KeyCode.B then
-        toggleMinimize()
-    end
-end)
-
--- Colocar no CoreGui
 ScreenGui.Parent = game:GetService("CoreGui")
-
-print("XQuantum Test GUI carregado!")
-print("MainFrame:", MainFrame.Size)
-print("LeftPanel:", LeftPanel.Size)
+print("Frames: MainFrame(960x613) LeftPanel(250x613)")
